@@ -19,18 +19,20 @@ def train_save_model():
     x_train = df.iloc[:,1:]
     y_train = df.iloc[:,0]
 
-    # 对特征进行预处理(标准化处理)
-    stand = StandardScaler()
-    x_train = stand.fit_transform(x_train)
+
 
     # 切分数据集
     x_train, x_test, y_train, y_test = train_test_split(x_train, y_train, test_size=0.2, random_state=22)
+
+    # 对特征进行预处理(标准化处理)
+    stand = StandardScaler()
+    x_train = stand.fit_transform(x_train)
 
     # 创建模型对象
     model = KNeighborsClassifier()
 
     #创建网格搜索和交叉验证的对象
-    gridsearch = GridSearchCV(model, param_grid={"n_neighbors":range(2,245)}, cv=5)
+    gridsearch = GridSearchCV(model, param_grid={"n_neighbors":range(2,20)}, cv=5)
 
     # 模型训练
     gridsearch.fit(x_train, y_train)
@@ -43,14 +45,14 @@ def load_model_predict():
     # 1.加载模型
     model = joblib.load("./data/model.pkl")
     # 2.加载数据
-    img = plt.imread("./data/demo_5.png")
+    img = plt.imread("./data/demo_2.png")
 
     # 将img 的28*28的二维数组,转换成1*784的二维数组
     img_new = img.reshape(1,-1)
 
     # 对特征进行预处理(标准化处理)
-    stand = StandardScaler()
-    img_new = stand.fit_transform(img_new)
+    # stand = StandardScaler()
+    # img_new = stand.fit_transform(img_new)
 
     # 模型预测
     img_predict = model.predict(img_new)
@@ -58,7 +60,7 @@ def load_model_predict():
     print(f"识别结果:{img_predict}")
 
 if __name__ == '__main__':
-    train_save_model()
+    # train_save_model()
     load_model_predict()
 
 
