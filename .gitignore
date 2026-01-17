@@ -6,7 +6,9 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
-/idea
+/.idea
 /data/手写数字识别.csv
 /data/手写数字识别 - 副本.csv
 /data/model.pkl
+/data/stand.pkl
+/data/train_stats.pkl
