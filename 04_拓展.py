@@ -20,3 +20,5 @@ import numpy as np
 
 x=[3,1,4,2,5]
 print(np.argsort(x))  # 返回是 [1 2 0 ] ->因为排序后的索引巡视:
+
+print(range(20, 100, 10))
